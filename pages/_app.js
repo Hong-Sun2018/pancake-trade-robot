@@ -1,5 +1,5 @@
 import { UseWalletProvider } from 'use-wallet';
-import { TEXT_NET } from '../chain-config';
+import { TEXT_NET } from '../configs/chain';
 
 const  MyApp = ({ Component, pageProps }) => {
   return (
