@@ -1,9 +1,9 @@
 import { UseWalletProvider } from 'use-wallet';
 import { TEXT_NET } from '../configs/chain';
+import PancakeProvider from '../pancake/PancakeProvider';
 
 const  MyApp = ({ Component, pageProps }) => {
   return (
-    <>
       < UseWalletProvider
         chainId={TEXT_NET.chainId}
         connectors={{
@@ -12,9 +12,10 @@ const  MyApp = ({ Component, pageProps }) => {
           }
         }}
       >
-        <Component {...pageProps} />
+        <PancakeProvider>
+          <Component {...pageProps} />
+        </PancakeProvider>        
       </UseWalletProvider>
-    </>
   );
 }
 
