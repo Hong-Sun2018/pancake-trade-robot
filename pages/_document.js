@@ -10,7 +10,7 @@ class MyDocument extends Document {
     const sheets = new ServerStyleSheets();
     const originalRenderPage = ctx.renderPage;
 
-    ctx.renderPage = () =>git originalRenderPage({
+    ctx.renderPage = () => originalRenderPage({
       enhanceApp: App => props => sheets.collect(<App {...props} />)
     });
 

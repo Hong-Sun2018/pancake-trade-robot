@@ -3,7 +3,8 @@ import { Box, Button } from '@mui/material';
 import { useWallet } from 'use-wallet';
 import account from '../store/account';
 import contract from '../store/contract';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { setAllownce } from '../api/pancake-api';
 
 const useStyles = makeStyles({
   root: {
@@ -25,14 +26,22 @@ const Home = () => {
   const pancakeContract = contract.useState('contract');
   console.log(loginAccount);
   console.log(pancakeContract);
+  let result = null;
+  let res = null; 
 
-  const [res, setRes] = useState({});
-  if (pancakeContract && pancakeContract.methods) {
-    const response = pancakeContract.methods.balanceOf(loginAccount).send();
-    setRes(response);
+  useEffect(() => {
+    
+  }, [loginAccount, pancakeContract]);
+
+  const showResult = () => {
+    
+      console.log("options******************************************")
+      // res = pancakeContract.methods.balanceOf(loginAccount).sendAsync();
+      result = setAllownce(pancakeContract.contract, loginAccount);
+    
+    console.log('result', result);
+    console.log('res', res);
   }
-
-  console.log(response);
 
 
   return (
@@ -49,7 +58,13 @@ const Home = () => {
         {`pancake balance: ${res}`}
       </Box>
       <Box>
-        <Button onClick={() => wallet.connect()} > MetaMask</Button>
+        {`set allowance: ${result}`}
+      </Box>
+      <Box>
+        <Button onClick={() => wallet.connect()} variant={'contained'} > MetaMask</Button>
+      </Box>
+      <Box>
+        <Button onClick={showResult} variant={'contained'} > Show result</Button>
       </Box>
     </Box>
   )
